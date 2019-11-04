@@ -14,7 +14,7 @@ $(OUTPUT_DIR)/index.html: $(LAYOUT_DIR)/index_header.html $(LAYOUT_DIR)/index_fo
 	cp $(LAYOUT_DIR)/index_header.html $@
 	for filename in `ls -t $(POST_DIR)`; do \
 		f=$(POST_DIR)/$$filename; \
-		echo "<a href=\"/$$(basename $$f .md)\">`sed '3q;d' $$f` - `sed '1q;d' $$f`</a><br/>" >> $@; \
+		echo "<a href=\"/$$(basename $$f .md).html\">`sed '3q;d' $$f` - `sed '1q;d' $$f`</a><br/>" >> $@; \
 	done
 	cat $(LAYOUT_DIR)/index_footer.html >> $@
 
