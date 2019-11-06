@@ -12,7 +12,7 @@ all: $(POSTS_HTML) $(OUTPUT_DIR)/index.html
 
 $(OUTPUT_DIR)/index.html: $(LAYOUT_DIR)/index_header.html $(LAYOUT_DIR)/index_footer.html $(POST_DIR)
 	cp $(LAYOUT_DIR)/index_header.html $@
-	for filename in `ls -t $(POST_DIR)`; do \
+	for filename in `ls $(POST_DIR)`; do \
 		f=$(POST_DIR)/$$filename; \
 		echo "<a href=\"/$$(basename $$f .md).html\">`sed '3q;d' $$f` - `sed '1q;d' $$f`</a><br/>" >> $@; \
 	done
@@ -25,7 +25,7 @@ $(BUILD_DIR)/%_header.html: $(POST_DIR)/%.md $(LAYOUT_DIR)/header.html
 	sed "s/{title}/$(shell head -1 $<)/g" $(LAYOUT_DIR)/header.html > $@
 
 $(BUILD_DIR)/%.html: $(POST_DIR)/%.md | $(BUILD_DIR)
-	pandoc -f markdown+pipe_tables -t html --ascii $< > $@
+	pandoc -f markdown+pipe_tables -t html -s --highlight pygments --ascii $< > $@
 
 $(OUTPUT_DIR):
 	mkdir -p $@

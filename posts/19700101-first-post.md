@@ -1,6 +1,6 @@
 Test post, please ignore
 ========================
-2019-11-04
+1970-01-01
 
 This is a test post of my static blog generator based on
 [MFBG](https://github.com/jeremycw/mfbg).
